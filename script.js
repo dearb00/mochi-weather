@@ -167,6 +167,18 @@ function getWeatherInfo(code, isDay = true, wind = 0) {
   };
 }
 
+function getWeatherImage(info) {
+  const images = {
+    sunny: "sunny.png",
+    cloudy: "cloudy.png",
+    rainy: "rainy.png",
+    stormy: "stormy.png",
+    snowy: "snowy.png",
+    windy: "windy.png"
+  };
+
+  return `assets/${images[info.theme] || "cloudy.png"}`;
+}
 
 // 3. Show a friendly status message
 

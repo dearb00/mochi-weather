@@ -1006,14 +1006,52 @@ body {
 
 /* Full pixel-art weather card */
 
+
+/* Full pixel-art weather card backgrounds */
+
 .current-card {
+  --card-accent: #d6a4ed;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
+
+  background-color: var(--card-bg, #f0e7ff);
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(255, 250, 252, 0.94) 0%,
+      rgba(255, 250, 252, 0.78) 48%,
+      rgba(255, 250, 252, 0.12) 100%
+    );
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  isolation: isolate;
 }
+
+/* Keep the existing weather content above the artwork */
+
+.current-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Remove decorative shapes that may cover the artwork */
+
+.current-card::before,
+.current-card::after {
+  pointer-events: none;
+}
+
+/* Optional: keep pixel art crisp */
+
+.weather-pixel-art {
+  display: block;
+  width: 100%;
+  height: 260px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
 
 .current-card > * {
   position: relative;

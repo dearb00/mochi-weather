@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#55418b">
+  <meta name="description" content="A cozy little pixel weather world with real weather forecasts.">
+
+  <title>Mochi Weather ☁️</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <div class="sky-decor" aria-hidden="true">
+    <div class="pixel-sun"></div>
+    <div class="cloud cloud-one"></div>
+    <div class="cloud cloud-two"></div>
+    <div class="mountain mountain-back"></div>
+    <div class="mountain mountain-front"></div>
+    <div class="lake"></div>
+    <div class="fireflies"></div>
+  </div>
+
+  <main class="app-shell">
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="Mochi Weather home">
+        <span class="brand-icon">☁</span>
+        <span>Mochi Weather</span>
+      </a>
+      <span class="header-note">a little weather diary ✿</span>
+    </header>
+
+    <section class="intro">
+      <p class="eyebrow">YOUR COZY LITTLE WEATHER WORLD</p>
+      <h1>How's the sky <span>today?</span></h1>
+      <p class="intro-text">
+        A little sunshine, a little magic, and a forecast just for you.
+      </p>
+    </section>
+
+    <form id="searchForm" class="search-bar">
+      <span aria-hidden="true">⌕</span>
+      <label class="sr-only" for="cityInput">Enter a city</label>
+      <input
+        id="cityInput"
+        type="text"
+        placeholder="Enter a city... e.g. Gujrat"
+        value="Gujrat"
+        autocomplete="off"
+        required
+      >
+      <button id="searchButton" type="submit">Find weather ✿</button>
+    </form>
+
+    <p id="statusMessage" class="status-message" role="status" aria-live="polite">
+      Preparing your little weather world...
+    </p>
+
+    <section class="current-card weather-theme-sunny" id="currentCard">
+      <div class="card-topline">
+        <div>
+          <p class="card-kicker">TODAY'S WEATHER</p>
+          <h2 id="cityName">Your city</h2>
+          <p id="currentDate" class="date-label">Loading today's date...</p>
+        </div>
+        <span class="weather-sticker" id="currentSticker" aria-hidden="true">🌤️</span>
+      </div>
+
+      <div class="current-content">
+        <div class="temperature-area">
+          <div class="temperature-bubble">
+            <span id="currentTemp">--</span><sup>°C</sup>
+          </div>
+          <h3 id="currentCondition">Waiting for sunshine...</h3>
+          <p id="feelsLike">Feels like --°C</p>
+          <p id="dayMessage" class="day-message">
+            Your sky has a little story to tell.
+          </p>
+        </div>
+
+        <div class="character-stage" id="characterStage">
+          <div class="float-ball ball-one">☁</div>
+          <div class="float-ball ball-two">✦</div>
+          <div class="character-halo"></div>
+          <div class="main-character" id="mainCharacter" aria-hidden="true">
+            🌼
+          </div>
+          <div class="character-ground"></div>
+          <p class="character-caption" id="characterCaption">
+            your little sky friend ♡
+          </p>
+        </div>
+      </div>
+
+      <div class="weather-details">
+        <div class="detail-item">
+          <span class="detail-icon">💧</span>
+          <div>
+            <p>Humidity</p>
+            <strong id="humidity">--%</strong>
+          </div>
+        </div>
+        <div class="detail-item">
+          <span class="detail-icon">🍃</span>
+          <div>
+            <p>Wind speed</p>
+            <strong id="windSpeed">-- km/h</strong>
+          </div>
+        </div>
+        <div class="detail-item">
+          <span class="detail-icon">🌡️</span>
+          <div>
+            <p>Feels like</p>
+            <strong id="detailFeelsLike">--°C</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <span>made with little clouds & lots of love</span>
+        <span aria-hidden="true">♡ ✦ ♡</span>
+      </div>
+    </section>
+
+    <section class="forecast-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">A PEEK INTO YOUR DAY</p>
+          <h2>Your daily moments <span>🌷</span></h2>
+        </div>
+        <span class="forecast-note">two little forecasts</span>
+      </div>
+
+      <div class="forecast-grid">
+        <article class="forecast-card morning-card" id="morningCard">
+          <div class="forecast-card-heading">
+            <span class="time-icon" aria-hidden="true">🌅</span>
+            <div>
+              <p class="forecast-time">MORNING</p>
+              <h3>Good morning!</h3>
+              <p id="morningTime" class="forecast-hour">Around 8:00 AM</p>
+            </div>
+          </div>
+
+          <div class="forecast-middle">
+            <div>
+              <p class="small-label">TEMPERATURE</p>
+              <p class="forecast-temp" id="morningTemp">--°C</p>
+              <p class="forecast-condition" id="morningCondition">Loading...</p>
+            </div>
+            <span class="forecast-character" id="morningCharacter"
+              aria-hidden="true">🌤️</span>
+          </div>
+
+          <div class="forecast-footer" id="morningMessage">
+            A new little day awaits ♡
+          </div>
+        </article>
+
+        <article class="forecast-card evening-card" id="eveningCard">
+          <div class="forecast-card-heading">
+            <span class="time-icon" aria-hidden="true">🌆</span>
+            <div>
+              <p class="forecast-time">EVENING</p>
+              <h3>Slow down, sunshine</h3>
+              <p id="eveningTime" class="forecast-hour">Around 6:00 PM</p>
+            </div>
+          </div>
+
+          <div class="forecast-middle">
+            <div>
+              <p class="small-label">TEMPERATURE</p>
+              <p class="forecast-temp" id="eveningTemp">--°C</p>
+              <p class="forecast-condition" id="eveningCondition">Loading...</p>
+            </div>
+            <span class="forecast-character" id="eveningCharacter"
+              aria-hidden="true">🌙</span>
+          </div>
+
+          <div class="forecast-footer" id="eveningMessage">
+            Let the sky tuck you in ♡
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>☁️ Mochi Weather · a tiny corner of calm 🌷</p>
+      <p>
+        Weather data by
+        <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">
+          Open-Meteo
+        </a>
+        · Made with HTML, CSS & JavaScript
+      </p>
+    </footer>
+  </main>
+</body>
+</html>

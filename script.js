@@ -360,7 +360,15 @@ function updateCurrentCard(city, weather) {
     `${Math.round(current.wind_speed_10m)} km/h`;
 
   dayMessage.textContent = info.message;
-  mainCharacter.textContent = info.character;
+  
+mainCharacter.innerHTML = `
+  <img
+    class="weather-pixel-art"
+    src="${getWeatherImage(info)}"
+    alt="${info.condition} weather illustration"
+  >
+`.....;
+
   characterCaption.textContent = info.caption;
 
   // Remove the previous theme before applying the new one.

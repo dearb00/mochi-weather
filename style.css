@@ -1068,3 +1068,22 @@ body {
   object-fit: contain;
   image-rendering: pixelated;
 }
+
+/* Weather artwork stays behind the card content */
+
+.current-card {
+  background-color: var(--card-bg, #f0e7ff);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.current-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.current-card::before,
+.current-card::after {
+  z-index: 0;
+}

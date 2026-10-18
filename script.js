@@ -167,6 +167,7 @@ function getWeatherInfo(code, isDay = true, wind = 0) {
   };
 }
 
+
 function getWeatherImage(info) {
   const images = {
     sunny: "sunny.png",
@@ -174,11 +175,13 @@ function getWeatherImage(info) {
     rainy: "rainy.png",
     stormy: "stormy.png",
     snowy: "snowy.png",
-    windy: "windy.png"
+    windy: "windy.png",
+    night: "cloudy.png"
   };
 
   return `assets/${images[info.theme] || "cloudy.png"}`;
 }
+
 
 // 3. Show a friendly status message
 
@@ -359,17 +362,29 @@ function updateCurrentCard(city, weather) {
   windSpeed.textContent =
     `${Math.round(current.wind_speed_10m)} km/h`;
 
-  dayMessage.textContent = info.message;
-  
-mainCharacter.innerHTML = `
-  <img
-    class="weather-pixel-art"
-    src="${getWeatherImage(info)}"
-    alt="${info.condition} weather illustration"
-  >
-`.....;
+ 
+dayMessage.textContent = info.message;
 
-  characterCaption.textContent = info.caption;
+// Apply the matching pixel-art illustration to the whole card.
+currentCard.style.backgroundImage = `
+  linear-gradient(
+    90deg,
+    rgba(255, 250, 252, 0.94) 0%,
+    rgba(255, 250, 252, 0.78) 48%,
+    rgba(255, 250, 252, 0.12) 100%
+  ),
+  url("${getWeatherImage(info)}")
+`;
+
+currentCard.style.backgroundSize = "cover";
+currentCard.style.backgroundPosition = "center";
+currentCard.style.backgroundRepeat = "no-repeat";
+
+// The illustration is now the card background, so hide
+// the old large character without removing its HTML.
+mainCharacter.style.display = "none";
+characterCaption.style.display = "none";
+
 
   // Remove the previous theme before applying the new one.
   currentCard.className = `current-card weather-theme-${info.theme}`;

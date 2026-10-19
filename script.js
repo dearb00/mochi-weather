@@ -528,3 +528,5 @@ searchForm.addEventListener("submit", event => {
 // 12. Load the default city when the page opens
 
 loadWeather(cityInput.value);
+
+console.log("💕 Mochi Weather JavaScript loaded!");

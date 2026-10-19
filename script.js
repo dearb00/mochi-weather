@@ -44,12 +44,14 @@ const eveningMessage = document.getElementById("eveningMessage");
 // 2. Weather-code descriptions
 // These codes come from the WMO weather classification.
 
+
 function getWeatherInfo(code, isDay = true, wind = 0) {
+  // Clear sky
   if (code === 0) {
     if (!isDay) {
       return {
         condition: "Clear night",
-        theme: "night",
+        theme: "nightly",
         icon: "🌙",
         character: "🌙",
         caption: "your sleepy sky friend ♡",
@@ -67,10 +69,11 @@ function getWeatherInfo(code, isDay = true, wind = 0) {
     };
   }
 
+  // Mainly clear / partly cloudy
   if (code === 1 || code === 2) {
     return {
       condition: "Partly cloudy",
-      theme: "cloudy",
+      theme: "partlyCloudy",
       icon: isDay ? "🌤️" : "☁️",
       character: "🌷",
       caption: "your cloud-watching friend ♡",
@@ -78,6 +81,7 @@ function getWeatherInfo(code, isDay = true, wind = 0) {
     };
   }
 
+  // Overcast
   if (code === 3) {
     return {
       condition: "Cloudy",
@@ -89,10 +93,11 @@ function getWeatherInfo(code, isDay = true, wind = 0) {
     };
   }
 
+  // Fog
   if (code === 45 || code === 48) {
     return {
       condition: "Foggy",
-      theme: "cloudy",
+      theme: "foggy",
       icon: "🌫️",
       character: "🧣",
       caption: "your misty morning friend ♡",
@@ -100,6 +105,7 @@ function getWeatherInfo(code, isDay = true, wind = 0) {
     };
   }
 
+  // Drizzle / freezing drizzle
   if ([51, 53, 55, 56, 57].includes(code)) {
     return {
       condition: "Drizzle",
@@ -111,6 +117,7 @@ function getWeatherInfo(code, isDay = true, wind = 0) {
     };
   }
 
+  // Rain / rain showers
   if ([61, 63, 65, 66, 67, 80, 81, 82].includes(code)) {
     return {
       condition: "Rainy",
@@ -122,6 +129,7 @@ function getWeatherInfo(code, isDay = true, wind = 0) {
     };
   }
 
+  // Snow / snow showers
   if ([71, 73, 75, 77, 85, 86].includes(code)) {
     return {
       condition: "Snowy",
@@ -133,6 +141,7 @@ function getWeatherInfo(code, isDay = true, wind = 0) {
     };
   }
 
+  // Thunderstorms
   if ([95, 96, 99].includes(code)) {
     return {
       condition: "Stormy",
@@ -144,8 +153,7 @@ function getWeatherInfo(code, isDay = true, wind = 0) {
     };
   }
 
-  // Wind is a supplementary condition:
-  // it can change the theme for otherwise clear or cloudy weather.
+  // Strong wind can become the visual theme
   if (wind >= 30) {
     return {
       condition: "Windy",
@@ -168,6 +176,7 @@ function getWeatherInfo(code, isDay = true, wind = 0) {
 }
 
 
+// Pick the correct image for the weather theme
 function getWeatherImage(info) {
   const images = {
     sunny: "sunny.png",
@@ -176,18 +185,13 @@ function getWeatherImage(info) {
     stormy: "stormy.png",
     snowy: "snowy.png",
     windy: "windy.png",
-    night: "cloudy.png"
+    partlyCloudy: "partlyCloudy.png",
+    foggy: "foggy.png",
+    hazy: "hazy.png",
+    nightly: "nightly.png"
   };
 
   return `assets/${images[info.theme] || "cloudy.png"}`;
-}
-
-
-// 3. Show a friendly status message
-
-function setStatus(message, isError = false) {
-  statusMessage.textContent = message;
-  statusMessage.classList.toggle("error", isError);
 }
 
 

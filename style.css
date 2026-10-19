@@ -1068,3 +1068,55 @@ body {
   object-fit: contain;
   image-rendering: pixelated;
 }
+
+/* Mochi Weather: all 10 weather themes */
+
+.weather-theme-sunny {
+  --card-accent: #f5c866;
+  --card-bg: #fff0bd;
+}
+
+.weather-theme-cloudy {
+  --card-accent: #c8b5f0;
+  --card-bg: #e8e0ff;
+}
+
+.weather-theme-rainy {
+  --card-accent: #8db6ef;
+  --card-bg: #dcecff;
+}
+
+.weather-theme-stormy {
+  --card-accent: #8d76bd;
+  --card-bg: #d6c9f1;
+}
+
+.weather-theme-snowy {
+  --card-accent: #acd6f5;
+  --card-bg: #e5f5ff;
+}
+
+.weather-theme-windy {
+  --card-accent: #a5d8b2;
+  --card-bg: #e0f4df;
+}
+
+.weather-theme-partlyCloudy {
+  --card-accent: #efa8ca;
+  --card-bg: #ffe3ef;
+}
+
+.weather-theme-foggy {
+  --card-accent: #aab5ca;
+  --card-bg: #e1e6f0;
+}
+
+.weather-theme-hazy {
+  --card-accent: #f2b18a;
+  --card-bg: #ffead4;
+}
+
+.weather-theme-nightly {
+  --card-accent: #a99bde;
+  --card-bg: #ddd7ff;
+}

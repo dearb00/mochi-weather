@@ -369,25 +369,27 @@ function updateCurrentCard(city, weather) {
  
 dayMessage.textContent = info.message;
 
-// Apply the matching pixel-art illustration to the whole card.
-currentCard.style.backgroundImage = `
-  linear-gradient(
-    90deg,
-    rgba(255, 250, 252, 0.94) 0%,
-    rgba(255, 250, 252, 0.78) 48%,
-    rgba(255, 250, 252, 0.12) 100%
-  ),
-  url("${getWeatherImage(info)}")
-`;
 
-currentCard.style.backgroundSize = "cover";
-currentCard.style.backgroundPosition = "center";
-currentCard.style.backgroundRepeat = "no-repeat";
+  // Apply the matching pixel-art illustration to the whole card.
+  currentCard.style.backgroundImage = `
+    linear-gradient(
+      90deg,
+      rgba(255, 250, 252, 0.84) 0%,
+      rgba(255, 250, 252, 0.58) 45%,
+      rgba(255, 250, 252, 0.12) 100%
+    ),
+    url("${getWeatherImage(info)}")
+  `;
 
-// The illustration is now the card background, so hide
-// the old large character without removing its HTML.
-mainCharacter.style.display = "none";
-characterCaption.style.display = "none";
+  currentCard.style.backgroundSize = "cover";
+  currentCard.style.backgroundPosition = "center";
+  currentCard.style.backgroundRepeat = "no-repeat";
+
+  // Hide the old emoji character because the card now has
+  // a complete pixel-art illustration as its background.
+  const characterStage = document.getElementById("characterStage");
+  characterStage.style.display = "none";
+
 
 
   // Remove the previous theme before applying the new one.

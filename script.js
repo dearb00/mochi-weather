@@ -452,6 +452,20 @@ function updateForecastCard(forecast, type) {
 }
 
 
+
+function setStatus(message, isError = false) {
+  const statusMessage = document.getElementById("statusMessage");
+
+  if (!statusMessage) {
+    console.error("Status message element was not found.");
+    return;
+  }
+
+  statusMessage.textContent = message;
+  statusMessage.classList.toggle("error", isError);
+}
+
+
 // 10. Search and display the requested city's weather
 
 async function loadWeather(city) {

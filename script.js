@@ -370,27 +370,25 @@ function updateCurrentCard(city, weather) {
 dayMessage.textContent = info.message;
 
 
-  // Apply the matching pixel-art illustration to the whole card.
+
+/* Apply the complete portrait illustration */
 currentCard.style.backgroundImage =
   `url("${getWeatherImage(info)}")`;
 
-currentCard.style.backgroundSize = "cover";
+currentCard.style.backgroundSize = "100% 100%";
 currentCard.style.backgroundPosition = "center";
 currentCard.style.backgroundRepeat = "no-repeat";
 
-  currentCard.style.backgroundSize = "cover";
-  currentCard.style.backgroundPosition = "center";
-  currentCard.style.backgroundRepeat = "no-repeat";
+/* Hide the old emoji character */
+const characterStage =
+  document.getElementById("characterStage");
 
-  // Hide the old emoji character because the card now has
-  // a complete pixel-art illustration as its background.
-  const characterStage = document.getElementById("characterStage");
-  characterStage.style.display = "none";
+characterStage.style.display = "none";
 
+/* Apply the correct weather theme */
+currentCard.className =
+  `current-card weather-theme-${info.theme}`;
 
-
-  // Remove the previous theme before applying the new one.
-  currentCard.className = `current-card weather-theme-${info.theme}`;
 }
 
 

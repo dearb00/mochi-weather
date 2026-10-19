@@ -1019,3 +1019,151 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* =========================================
+   MOCHI WEATHER — PORTRAIT ART CARD
+   ========================================= */
+
+.current-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  width: min(100%, 430px);
+  min-height: 570px;
+  aspect-ratio: 3 / 4;
+  margin-inline: auto;
+  padding: 22px;
+
+  background-color: var(--card-bg, #ddd7ff);
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border: none;
+  border-radius: 24px;
+  box-shadow: 0 14px 0 #30204b35, 0 22px 40px #241b4226;
+}
+
+/* No faded overlays */
+.current-card::before,
+.current-card::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Remove the old landscape layout */
+.current-card .current-content {
+  display: block;
+  padding: 0;
+}
+
+.current-card .character-stage {
+  display: none !important;
+}
+
+/* Keep the city and date readable */
+.current-card .card-topline {
+  position: relative;
+  z-index: 2;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.current-card .card-topline h2 {
+  font-size: clamp(1rem, 4vw, 1.4rem);
+  overflow-wrap: anywhere;
+}
+
+.current-card .card-kicker,
+.current-card .date-label {
+  text-shadow: 0 1px 2px #fff8;
+}
+
+/* Temperature bubble */
+.current-card .temperature-area {
+  position: relative;
+  z-index: 2;
+  margin-top: 14px;
+}
+
+.current-card .temperature-bubble {
+  display: inline-flex;
+  padding: 8px 14px;
+  background: #fffaf0;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 3px 0 #30204b20;
+  font-size: clamp(2rem, 7vw, 3rem);
+}
+
+/* Weather description */
+.current-card .temperature-area h3 {
+  margin-top: 12px;
+  font-size: 1.1rem;
+}
+
+.current-card #feelsLike,
+.current-card .day-message {
+  max-width: 240px;
+  font-size: 0.78rem;
+}
+
+/* Three separate weather-detail bubbles */
+.current-card .weather-details {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 145px;
+  padding-top: 0;
+  border: 0;
+}
+
+.current-card .detail-item {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 9px 4px;
+  text-align: center;
+  border: 2px solid white;
+  border-radius: 15px;
+  background: #fffaf0;
+}
+
+.current-card .detail-item p {
+  font-size: 0.62rem;
+}
+
+.current-card .detail-item strong {
+  font-size: 0.75rem;
+  overflow-wrap: anywhere;
+}
+
+.current-card .detail-icon {
+  font-size: 19px;
+}
+
+/* Small footer */
+.current-card .card-footer {
+  position: relative;
+  z-index: 2;
+  margin-top: 10px;
+  font-size: 0.65rem;
+}
+
+/* Small screens */
+@media (max-width: 650px) {
+  .current-card {
+    width: min(100%, 390px);
+    min-height: 520px;
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .current-card .weather-details {
+    margin-top: 125px;
+  }
+}

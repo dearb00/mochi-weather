@@ -371,15 +371,12 @@ dayMessage.textContent = info.message;
 
 
   // Apply the matching pixel-art illustration to the whole card.
-  currentCard.style.backgroundImage = `
-    linear-gradient(
-      90deg,
-      rgba(255, 250, 252, 0.84) 0%,
-      rgba(255, 250, 252, 0.58) 45%,
-      rgba(255, 250, 252, 0.12) 100%
-    ),
-    url("${getWeatherImage(info)}")
-  `;
+currentCard.style.backgroundImage =
+  `url("${getWeatherImage(info)}")`;
+
+currentCard.style.backgroundSize = "cover";
+currentCard.style.backgroundPosition = "center";
+currentCard.style.backgroundRepeat = "no-repeat";
 
   currentCard.style.backgroundSize = "cover";
   currentCard.style.backgroundPosition = "center";

@@ -1120,3 +1120,47 @@ body {
   --card-accent: #a99bde;
   --card-bg: #ddd7ff;
 }
+
+/* Mochi Weather — crisp pixel-art card */
+
+.current-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  background-color: var(--card-bg, #e8e0ff);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  image-rendering: auto;
+}
+
+/* Remove the faded overlay */
+.current-card {
+  background-image: none;
+}
+
+.current-card::before,
+.current-card::after {
+  content: none;
+}
+
+/* Keep all real weather information above the art */
+.current-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Readable weather information */
+.temperature-bubble,
+.detail-item,
+.character-caption {
+  background-color: rgba(255, 250, 252, 0.94);
+}
+
+/* Do not blur pixel-art backgrounds */
+.current-card,
+.current-card * {
+  backdrop-filter: none;
+}

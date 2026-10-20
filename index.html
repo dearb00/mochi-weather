@@ -59,71 +59,55 @@
       Preparing your little weather world...
     </p>
 
-    <section class="current-card weather-theme-sunny" id="currentCard">
-      <div class="card-topline">
-        <div>
-          <p class="card-kicker">TODAY'S WEATHER</p>
-          <h2 id="cityName">Your city</h2>
-          <p id="currentDate" class="date-label">Loading today's date...</p>
-        </div>
-        <span class="weather-sticker" id="currentSticker" aria-hidden="true">🌤️</span>
-      </div>
+    
+<section class="current-card weather-theme-nightly" id="currentCard">
 
-      <div class="current-content">
-        <div class="temperature-area">
-          <div class="temperature-bubble">
-            <span id="currentTemp">--</span><sup>°C</sup>
-          </div>
-          <h3 id="currentCondition">Waiting for sunshine...</h3>
-          <p id="feelsLike">Feels like --°C</p>
-          <p id="dayMessage" class="day-message">
-            Your sky has a little story to tell.
-          </p>
-        </div>
+  <div class="art-header">
+    <div class="location-info">
+      <h2 id="cityName">Your City</h2>
+      <p id="currentDate" class="date-label">Loading date...</p>
+    </div>
+    <span class="weather-sticker" id="currentSticker" aria-hidden="true">🌙</span>
+  </div>
 
-        <div class="character-stage" id="characterStage">
-          <div class="float-ball ball-one">☁</div>
-          <div class="float-ball ball-two">✦</div>
-          <div class="character-halo"></div>
-          <div class="main-character" id="mainCharacter" aria-hidden="true">
-            🌼
-          </div>
-          <div class="character-ground"></div>
-          <p class="character-caption" id="characterCaption">
-            your little sky friend ♡
-          </p>
-        </div>
-      </div>
+  <!-- Weather artwork comes from the selected image file -->
+  <div class="art-spacer" aria-hidden="true"></div>
 
-      <div class="weather-details">
-        <div class="detail-item">
-          <span class="detail-icon">💧</span>
-          <div>
-            <p>Humidity</p>
-            <strong id="humidity">--%</strong>
-          </div>
-        </div>
-        <div class="detail-item">
-          <span class="detail-icon">🍃</span>
-          <div>
-            <p>Wind speed</p>
-            <strong id="windSpeed">-- km/h</strong>
-          </div>
-        </div>
-        <div class="detail-item">
-          <span class="detail-icon">🌡️</span>
-          <div>
-            <p>Feels like</p>
-            <strong id="detailFeelsLike">--°C</strong>
-          </div>
-        </div>
-      </div>
+  <!-- Accessible weather information -->
+  <div class="condition-panel">
+    <span class="condition-icon" id="conditionIcon" aria-hidden="true">🌙</span>
+    <div class="condition-copy">
+      <h3 id="currentCondition">Clear night</h3>
+      <p id="dayMessage">A peaceful little night under the stars.</p>
+    </div>
+  </div>
 
-      <div class="card-footer">
-        <span>made with little clouds & lots of love</span>
-        <span aria-hidden="true">♡ ✦ ♡</span>
-      </div>
-    </section>
+  <!-- Keep existing weather data IDs for JavaScript -->
+  <span id="currentTemp" class="sr-only">--</span>
+  <span id="feelsLike" class="sr-only">Feels like --°C</span>
+
+  <div class="weather-details">
+    <div class="detail-item">
+      <span class="detail-icon" aria-hidden="true">💧</span>
+      <p>Humidity</p>
+      <strong id="humidity">--%</strong>
+    </div>
+
+    <div class="detail-item">
+      <span class="detail-icon" aria-hidden="true">🍃</span>
+      <p>Wind speed</p>
+      <strong id="windSpeed">-- km/h</strong>
+    </div>
+
+    <div class="detail-item">
+      <span class="detail-icon" aria-hidden="true">🌡️</span>
+      <p>Feels like</p>
+      <strong id="detailFeelsLike">--°C</strong>
+    </div>
+  </div>
+
+</section>
+
 
     <section class="forecast-section">
       <div class="section-heading">

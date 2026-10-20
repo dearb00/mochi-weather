@@ -1,12 +1,13 @@
 
 "use strict";
 
-// ==========================================
+// ========================================
 // MOCHI WEATHER ☁️
 // Real weather powered by Open-Meteo
-// ==========================================
+// ========================================
 
-// 1. Get HTML elements
+// 1. HTML elements
+
 const searchForm = document.getElementById("searchForm");
 const cityInput = document.getElementById("cityInput");
 const searchButton = document.getElementById("searchButton");
@@ -18,13 +19,12 @@ const currentDate = document.getElementById("currentDate");
 const currentTemp = document.getElementById("currentTemp");
 const currentCondition = document.getElementById("currentCondition");
 const currentSticker = document.getElementById("currentSticker");
+const conditionIcon = document.getElementById("conditionIcon");
 const feelsLike = document.getElementById("feelsLike");
 const detailFeelsLike = document.getElementById("detailFeelsLike");
 const humidity = document.getElementById("humidity");
 const windSpeed = document.getElementById("windSpeed");
 const dayMessage = document.getElementById("dayMessage");
-const mainCharacter = document.getElementById("mainCharacter");
-const characterCaption = document.getElementById("characterCaption");
 
 const morningCard = document.getElementById("morningCard");
 const morningTime = document.getElementById("morningTime");
@@ -41,126 +41,103 @@ const eveningCharacter = document.getElementById("eveningCharacter");
 const eveningMessage = document.getElementById("eveningMessage");
 
 
-// 2. Weather-code descriptions
-// These codes come from the WMO weather classification.
-
+// 2. Weather descriptions and themes
 
 function getWeatherInfo(code, isDay = true, wind = 0) {
-  // Clear sky
   if (code === 0) {
-    if (!isDay) {
-      return {
-        condition: "Clear night",
-        theme: "nightly",
-        icon: "🌙",
-        character: "🌙",
-        caption: "your sleepy sky friend ♡",
-        message: "A peaceful little night under the stars."
-      };
-    }
-
-    return {
-      condition: "Sunny",
-      theme: "sunny",
-      icon: "☀️",
-      character: "🌼",
-      caption: "your sunshine friend ♡",
-      message: "A little sunshine makes everything brighter!"
-    };
+    return isDay
+      ? {
+          condition: "Clear sky",
+          theme: "sunny",
+          icon: "☀️",
+          character: "🌼",
+          message: "A little sunshine makes everything brighter!"
+        }
+      : {
+          condition: "Clear night",
+          theme: "nightly",
+          icon: "🌙",
+          character: "🌙",
+          message: "A peaceful little night under the stars."
+        };
   }
 
-  // Mainly clear / partly cloudy
   if (code === 1 || code === 2) {
     return {
       condition: "Partly cloudy",
       theme: "partlyCloudy",
       icon: isDay ? "🌤️" : "☁️",
       character: "🌷",
-      caption: "your cloud-watching friend ♡",
       message: "A little sun, a little cloud, lots of cozy vibes."
     };
   }
 
-  // Overcast
   if (code === 3) {
     return {
       condition: "Cloudy",
       theme: "cloudy",
       icon: "☁️",
       character: "🧸",
-      caption: "your cozy cloud friend ♡",
       message: "Perfect weather for a warm drink and a soft blanket."
     };
   }
 
-  // Fog
   if (code === 45 || code === 48) {
     return {
       condition: "Foggy",
       theme: "foggy",
       icon: "🌫️",
       character: "🧣",
-      caption: "your misty morning friend ♡",
       message: "The world is wearing a little blanket of mist."
     };
   }
 
-  // Drizzle / freezing drizzle
   if ([51, 53, 55, 56, 57].includes(code)) {
     return {
       condition: "Drizzle",
       theme: "rainy",
       icon: "🌦️",
       character: "☂️",
-      caption: "your tiny umbrella friend ♡",
       message: "Tiny raindrops are dancing outside. Stay cozy!"
     };
   }
 
-  // Rain / rain showers
   if ([61, 63, 65, 66, 67, 80, 81, 82].includes(code)) {
     return {
       condition: "Rainy",
       theme: "rainy",
       icon: "🌧️",
       character: "☔",
-      caption: "your rainy-day friend ♡",
       message: "Grab your umbrella and enjoy the rainy-day magic."
     };
   }
 
-  // Snow / snow showers
   if ([71, 73, 75, 77, 85, 86].includes(code)) {
     return {
       condition: "Snowy",
       theme: "snowy",
       icon: "❄️",
       character: "⛄",
-      caption: "your little snow friend ♡",
       message: "Everything feels a little more magical in the snow."
     };
   }
 
-  // Thunderstorms
   if ([95, 96, 99].includes(code)) {
     return {
       condition: "Stormy",
       theme: "stormy",
       icon: "⛈️",
       character: "🐈‍⬛",
-      caption: "your brave storm friend ♡",
-      message: "Thunderstorms may occur. Stay safely indoors."
+      message: "Stay safe and cozy indoors during thunderstorms."
     };
   }
 
-  // Strong wind can become the visual theme
   if (wind >= 30) {
     return {
       condition: "Windy",
       theme: "windy",
       icon: "🍃",
       character: "🍃",
-      caption: "your breezy little friend ♡",
       message: "The breeze is dancing through the trees today."
     };
   }
@@ -170,13 +147,14 @@ function getWeatherInfo(code, isDay = true, wind = 0) {
     theme: "cloudy",
     icon: "🌥️",
     character: "🌷",
-    caption: "your little sky friend ♡",
     message: "Your sky has a little story to tell."
   };
 }
 
 
-// Pick the correct image for the weather theme
+// 3. Match each weather condition to its artwork.
+// Keep these filenames identical to your assets folder.
+
 function getWeatherImage(info) {
   const images = {
     sunny: "sunny.png",
@@ -195,7 +173,7 @@ function getWeatherImage(info) {
 }
 
 
-// 4. Search for a city using Open-Meteo's geocoding API
+// 4. Find the city using Open-Meteo geocoding
 
 async function findCity(city) {
   const url = new URL(
@@ -219,11 +197,10 @@ async function findCity(city) {
 
   if (!data.results || data.results.length === 0) {
     throw new Error(
-      "We couldn't find that city. Please check the spelling and try again."
+      "We couldn't find that city. Check the spelling and try again."
     );
   }
 
-  // Prefer an exact city-name match when available.
   const exactMatch = data.results.find(
     place => place.name.toLowerCase() === city.trim().toLowerCase()
   );
@@ -232,7 +209,7 @@ async function findCity(city) {
 }
 
 
-// 5. Fetch current weather and hourly forecast
+// 5. Fetch live weather and hourly forecasts
 
 async function fetchWeather(latitude, longitude) {
   const url = new URL(
@@ -248,7 +225,6 @@ async function fetchWeather(latitude, longitude) {
       "relative_humidity_2m",
       "apparent_temperature",
       "is_day",
-      "precipitation",
       "weather_code",
       "wind_speed_10m"
     ].join(","),
@@ -286,25 +262,22 @@ async function fetchWeather(latitude, longitude) {
 }
 
 
-// 6. Format dates and times in the city's local timezone
+// 6. Format local dates and times
 
 function formatDate(dateString) {
-  // Use a date-only string safely without shifting the calendar day.
   const [year, month, day] = dateString.split("-").map(Number);
-
   const date = new Date(year, month - 1, day);
 
   return new Intl.DateTimeFormat("en", {
     weekday: "long",
-    day: "numeric",
     month: "long",
+    day: "numeric",
     year: "numeric"
   }).format(date);
 }
 
 function formatTime(timeString) {
   const hour = Number(timeString.slice(11, 13));
-
   const period = hour >= 12 ? "PM" : "AM";
   const hour12 = hour % 12 || 12;
 
@@ -312,11 +285,11 @@ function formatTime(timeString) {
 }
 
 
-// 7. Find the closest hourly forecast to a target hour
+// 7. Get a forecast for the requested hour
 
 function getForecastForHour(hourly, targetHour) {
-  const targetIndex = hourly.time.findIndex(time =>
-    Number(time.slice(11, 13)) === targetHour
+  const targetIndex = hourly.time.findIndex(
+    time => Number(time.slice(11, 13)) === targetHour
   );
 
   if (targetIndex === -1) {
@@ -336,7 +309,7 @@ function getForecastForHour(hourly, targetHour) {
 }
 
 
-// 8. Change the current card to match the weather
+// 8. Update the main illustrated weather card
 
 function updateCurrentCard(city, weather) {
   const current = weather.current;
@@ -350,9 +323,12 @@ function updateCurrentCard(city, weather) {
   cityName.textContent = city;
   currentDate.textContent = formatDate(current.time.slice(0, 10));
 
-  currentTemp.textContent = Math.round(current.temperature_2m);
+  currentTemp.textContent =
+    `${Math.round(current.temperature_2m)}°C`;
+
   currentCondition.textContent = info.condition;
   currentSticker.textContent = info.icon;
+  conditionIcon.textContent = info.icon;
 
   feelsLike.textContent =
     `Feels like ${Math.round(current.apparent_temperature)}°C`;
@@ -360,108 +336,93 @@ function updateCurrentCard(city, weather) {
   detailFeelsLike.textContent =
     `${Math.round(current.apparent_temperature)}°C`;
 
-  humidity.textContent =
-    `${current.relative_humidity_2m}%`;
+  humidity.textContent = `${current.relative_humidity_2m}%`;
 
   windSpeed.textContent =
     `${Math.round(current.wind_speed_10m)} km/h`;
 
- 
-dayMessage.textContent = info.message;
+  dayMessage.textContent = info.message;
 
+  // CSS uses this image as the card's background.
+  // HTML text and detail circles stay separate and readable.
+  currentCard.style.setProperty(
+    "--weather-art",
+    `url("${getWeatherImage(info)}")`
+  );
 
-
-/* Apply the complete portrait illustration */
-currentCard.style.backgroundImage =
-  `url("${getWeatherImage(info)}")`;
-
-currentCard.style.backgroundSize = "100% 100%";
-currentCard.style.backgroundPosition = "center";
-currentCard.style.backgroundRepeat = "no-repeat";
-
-/* Hide the old emoji character */
-const characterStage =
-  document.getElementById("characterStage");
-
-characterStage.style.display = "none";
-
-/* Apply the correct weather theme */
-currentCard.className =
-  `current-card weather-theme-${info.theme}`;
-
+  currentCard.className =
+    `current-card weather-theme-${info.theme}`;
 }
 
 
-// 9. Update one of the small forecast cards
+// 9. Update the morning or evening forecast
 
 function updateForecastCard(forecast, type) {
+  const isMorning = type === "morning";
+
+  const elements = isMorning
+    ? {
+        card: morningCard,
+        time: morningTime,
+        temp: morningTemp,
+        condition: morningCondition,
+        character: morningCharacter,
+        message: morningMessage
+      }
+    : {
+        card: eveningCard,
+        time: eveningTime,
+        temp: eveningTemp,
+        condition: eveningCondition,
+        character: eveningCharacter,
+        message: eveningMessage
+      };
+
   if (!forecast) {
-    const tempElement =
-      type === "morning" ? morningTemp : eveningTemp;
-
-    const conditionElement =
-      type === "morning" ? morningCondition : eveningCondition;
-
-    tempElement.textContent = "--°C";
-    conditionElement.textContent = "Unavailable";
+    elements.temp.textContent = "--°C";
+    elements.condition.textContent = "Unavailable";
+    elements.message.textContent =
+      "This hourly forecast isn't available.";
     return;
   }
 
   const info = getWeatherInfo(
     forecast.weatherCode,
-    type === "morning",
+    isMorning,
     forecast.windSpeed ?? 0
   );
 
-  if (type === "morning") {
-    morningTime.textContent = formatTime(forecast.time);
-    morningTemp.textContent =
-      `${Math.round(forecast.temperature)}°C`;
+  elements.time.textContent = formatTime(forecast.time);
 
-    morningCondition.textContent = info.condition;
-    morningCharacter.textContent = info.character;
+  elements.temp.textContent =
+    `${Math.round(forecast.temperature)}°C`;
 
-    morningMessage.textContent =
-      forecast.precipitationProbability == null
-        ? info.message
-        : `${info.message} Rain chance: ${forecast.precipitationProbability}%.`;
+  elements.condition.textContent = info.condition;
+  elements.character.textContent = info.character;
 
-    morningCard.style.borderColor =
-      getComputedStyle(currentCard).getPropertyValue("--card-accent");
-  } else {
-    eveningTime.textContent = formatTime(forecast.time);
-    eveningTemp.textContent =
-      `${Math.round(forecast.temperature)}°C`;
+  const rainChance = forecast.precipitationProbability;
 
-    eveningCondition.textContent = info.condition;
-    eveningCharacter.textContent = info.character;
+  elements.message.textContent =
+    rainChance == null
+      ? info.message
+      : `${info.message} Rain chance: ${rainChance}%.`;
 
-    eveningMessage.textContent =
-      forecast.precipitationProbability == null
-        ? info.message
-        : `${info.message} Rain chance: ${forecast.precipitationProbability}%.`;
-
-    eveningCard.style.borderColor =
-      getComputedStyle(currentCard).getPropertyValue("--card-accent");
-  }
+  elements.card.style.borderColor =
+    getComputedStyle(currentCard)
+      .getPropertyValue("--card-accent")
+      .trim();
 }
 
 
+// 10. Display status and errors
 
 function setStatus(message, isError = false) {
-  const statusMessage = document.getElementById("statusMessage");
-
-  if (!statusMessage) {
-    console.error("Status message element was not found.");
-    return;
-  }
-
   statusMessage.textContent = message;
   statusMessage.classList.toggle("error", isError);
 }
 
 
-// 10. Search and display the requested city's weather
+// 11. Load a city's weather
 
 async function loadWeather(city) {
   const cleanedCity = city.trim();
@@ -482,22 +443,16 @@ async function loadWeather(city) {
       place.longitude
     );
 
-    // Include region/country to distinguish cities with similar names.
     const locationParts = [
       place.name,
       place.admin1,
       place.country
     ].filter(Boolean);
 
-    // Remove duplicate labels.
-    const uniqueLocationParts = [...new Set(locationParts)];
-
-    const displayCity = uniqueLocationParts.join(", ");
+    const displayCity = [...new Set(locationParts)].join(", ");
 
     updateCurrentCard(displayCity, weather);
 
-    // Morning = closest available hourly value at 8 AM.
-    // Evening = closest available hourly value at 6 PM.
     const morningForecast = getForecastForHour(
       weather.hourly,
       8
@@ -511,13 +466,15 @@ async function loadWeather(city) {
     updateForecastCard(morningForecast, "morning");
     updateForecastCard(eveningForecast, "evening");
 
-    setStatus(`Your little weather world is ready for ${place.name}! ✨`);
+    setStatus(
+      `Your little weather world is ready for ${place.name}! ✨`
+    );
   } catch (error) {
     console.error("Mochi Weather error:", error);
 
     setStatus(
       error.message ||
-      "Something went wrong. Please try again in a moment.",
+      "Something went wrong. Please try again.",
       true
     );
   } finally {
@@ -526,7 +483,7 @@ async function loadWeather(city) {
 }
 
 
-// 11. Listen for the search form submission
+// 12. Search when the form is submitted
 
 searchForm.addEventListener("submit", event => {
   event.preventDefault();
@@ -534,8 +491,8 @@ searchForm.addEventListener("submit", event => {
 });
 
 
-// 12. Load the default city when the page opens
+// 13. Load Gujrat when the page opens
 
 loadWeather(cityInput.value);
 
-console.log("💕 Mochi Weather JavaScript loaded!");
+console.log("💕 Mochi Weather is ready!");

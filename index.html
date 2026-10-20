@@ -20,50 +20,35 @@
 
   <main class="app-shell">
     <header class="site-header">
-      <a class="brand" href="#">
-        <span class="brand-icon">☁</span>
-        <span>Mochi Weather</span>
-      </a>
+      <a class="brand" href="#"><span class="brand-icon">☁</span><span>Mochi Weather</span></a>
       <span class="header-note">a little weather diary ✿</span>
     </header>
 
     <section class="intro">
       <p class="eyebrow">YOUR COZY LITTLE WEATHER WORLD</p>
       <h1>How's the sky <span>today?</span></h1>
-      <p class="intro-text">
-        A little sunshine, a little magic, and a forecast just for you.
-      </p>
+      <p class="intro-text">A little sunshine, a little magic, and a forecast just for you.</p>
     </section>
 
     <form id="searchForm" class="search-bar">
       <span aria-hidden="true">⌕</span>
       <label class="sr-only" for="cityInput">Enter a city</label>
-      <input
-        id="cityInput"
-        type="text"
-        placeholder="Enter a city... e.g. Gujrat"
-        value="Gujrat"
-        autocomplete="off"
-        required
-      >
+      <input id="cityInput" type="text" placeholder="Enter a city... e.g. Gujrat" value="Gujrat" autocomplete="off" required>
       <button id="searchButton" type="submit">Find weather ✿</button>
     </form>
+    <p id="statusMessage" class="status-message" role="status" aria-live="polite">Preparing your little weather world...</p>
 
-    <p id="statusMessage" class="status-message" role="status" aria-live="polite">
-      Preparing your little weather world...
-    </p>
+    <section class="current-card weather-theme-night" id="currentCard" aria-label="Current weather">
+      <div class="art-panel" id="artPanel" aria-hidden="true"></div>
 
-    <!-- MAIN PIXEL ART WEATHER CARD -->
-    <section class="current-card weather-theme-night" id="currentCard">
       <div class="card-topline">
         <div class="location-block">
-          <h2><span class="location-pin">♥</span> <span id="cityName">Gujrat</span></h2>
+          <h2><span class="location-pin">♥</span><span id="cityName">Gujrat</span></h2>
           <p id="currentDate" class="date-label">Loading date...</p>
         </div>
         <span class="weather-sticker" id="currentSticker" aria-hidden="true">🌙</span>
       </div>
 
-      <!-- This image is decorative; weather text remains real HTML. -->
       <div class="art-spacer" aria-hidden="true"></div>
 
       <div class="condition-bar">
@@ -71,104 +56,33 @@
         <div class="condition-copy">
           <h3 id="currentCondition">Waiting for the sky...</h3>
           <p id="dayMessage">Your sky has a little story to tell.</p>
-          <span id="currentTemp" class="sr-only">--</span>
+          <span id="currentTemp" class="sr-only">--°C</span>
         </div>
       </div>
 
       <div class="weather-details">
         <div class="detail-item">
           <span class="detail-icon humidity-icon" aria-hidden="true">💧</span>
-          <p>Humidity</p>
-          <strong id="humidity">--%</strong>
+          <p>Humidity</p><strong id="humidity">--%</strong>
         </div>
         <div class="detail-item">
           <span class="detail-icon wind-icon" aria-hidden="true">≋</span>
-          <p>Wind speed</p>
-          <strong id="windSpeed">-- km/h</strong>
+          <p>Wind speed</p><strong id="windSpeed">-- km/h</strong>
         </div>
         <div class="detail-item">
           <span class="detail-icon feels-icon" aria-hidden="true">🌡</span>
-          <p>Feels like</p>
-          <strong id="detailFeelsLike">--°C</strong>
+          <p>Feels like</p><strong id="detailFeelsLike">--°C</strong>
         </div>
       </div>
-
-      <p id="feelsLike" class="sr-only">Feels like --°C</p>
 
       <div class="card-footer">
-        <span>made with little clouds & lots of love</span>
-        <span aria-hidden="true">♡ ✦ ♡</span>
-      </div>
-    </section>
-
-    <!-- MORNING AND EVENING FORECASTS -->
-    <section class="forecast-section">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">A PEEK INTO YOUR DAY</p>
-          <h2>Your daily moments <span>🌷</span></h2>
-        </div>
-        <span class="forecast-note">two little forecasts</span>
-      </div>
-
-      <div class="forecast-grid">
-        <article class="forecast-card morning-card" id="morningCard">
-          <div class="forecast-card-heading">
-            <span class="time-icon" aria-hidden="true">🌅</span>
-            <div>
-              <p class="forecast-time">MORNING</p>
-              <h3>Good morning!</h3>
-              <p id="morningTime" class="forecast-hour">Around 8:00 AM</p>
-            </div>
-          </div>
-
-          <div class="forecast-middle">
-            <div>
-              <p class="small-label">TEMPERATURE</p>
-              <p class="forecast-temp" id="morningTemp">--°C</p>
-              <p class="forecast-condition" id="morningCondition">Loading...</p>
-            </div>
-            <span class="forecast-character" id="morningCharacter" aria-hidden="true">🌤️</span>
-          </div>
-
-          <div class="forecast-footer" id="morningMessage">
-            A new little day awaits ♡
-          </div>
-        </article>
-
-        <article class="forecast-card evening-card" id="eveningCard">
-          <div class="forecast-card-heading">
-            <span class="time-icon" aria-hidden="true">🌆</span>
-            <div>
-              <p class="forecast-time">EVENING</p>
-              <h3>Slow down, sunshine</h3>
-              <p id="eveningTime" class="forecast-hour">Around 6:00 PM</p>
-            </div>
-          </div>
-
-          <div class="forecast-middle">
-            <div>
-              <p class="small-label">TEMPERATURE</p>
-              <p class="forecast-temp" id="eveningTemp">--°C</p>
-              <p class="forecast-condition" id="eveningCondition">Loading...</p>
-            </div>
-            <span class="forecast-character" id="eveningCharacter" aria-hidden="true">🌙</span>
-          </div>
-
-          <div class="forecast-footer" id="eveningMessage">
-            Let the sky tuck you in ♡
-          </div>
-        </article>
+        <span>made with little clouds & lots of love</span><span aria-hidden="true">♡ ✦ ♡</span>
       </div>
     </section>
 
     <footer class="site-footer">
       <p>☁️ Mochi Weather · a tiny corner of calm 🌷</p>
-      <p>
-        Weather data by
-        <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a>
-        · Made with HTML, CSS & JavaScript
-      </p>
+      <p>Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> · Made with HTML, CSS & JavaScript</p>
     </footer>
   </main>
 </body>

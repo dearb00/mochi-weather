@@ -1167,3 +1167,258 @@ body {
     margin-top: 125px;
   }
 }
+
+/* =====================================
+   MOCHI WEATHER — PIXEL ART CARD
+   ===================================== */
+
+.current-card {
+  --card-accent: #a78bfa;
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  width: min(100%, 430px);
+  min-height: 0;
+  aspect-ratio: 3 / 4;
+  margin-inline: auto;
+  padding: 12px;
+
+  overflow: hidden;
+  border: 5px solid #eee5ff;
+  border-radius: 30px;
+
+  background-color: #342d83;
+  background-image:
+    linear-gradient(
+      to bottom,
+      rgba(24, 22, 75, 0.18) 0%,
+      rgba(28, 23, 91, 0.03) 47%,
+      rgba(163, 117, 242, 0.30) 67%,
+      rgba(171, 125, 249, 0.96) 100%
+    ),
+    var(--weather-art, none);
+
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat;
+
+  box-shadow:
+    0 0 0 2px #9e78f7,
+    0 14px 30px rgba(24, 17, 61, 0.30);
+}
+
+/* City and date */
+.art-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+
+  min-height: 70px;
+  padding: 9px 9px 0;
+  color: #fffaff;
+}
+
+.location-info {
+  min-width: 0;
+}
+
+.location-info h2 {
+  margin: 0;
+  font-size: clamp(0.9rem, 3.3vw, 1.25rem);
+  line-height: 1.4;
+  font-weight: 900;
+  overflow-wrap: anywhere;
+  text-shadow: 0 2px 5px #19134e80;
+}
+
+.current-card .date-label {
+  margin: 5px 0 0;
+  color: #f4eaff;
+  font-size: clamp(0.68rem, 2.5vw, 0.86rem);
+  text-shadow: 0 1px 4px #19134e90;
+}
+
+.current-card .weather-sticker {
+  flex-shrink: 0;
+  font-size: 31px;
+}
+
+/* Let the illustration breathe */
+.art-spacer {
+  flex: 1 1 auto;
+  min-height: 120px;
+}
+
+/* Rounded condition and description panel */
+.condition-panel {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  min-height: 86px;
+  padding: 13px 16px;
+  margin: 0 0 10px;
+
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 28px;
+
+  background: rgba(255, 249, 255, 0.94);
+  box-shadow: 0 4px 0 rgba(79, 50, 135, 0.12);
+  color: #443780;
+}
+
+.condition-icon {
+  display: grid;
+  flex: 0 0 58px;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  font-size: 42px;
+}
+
+.condition-copy {
+  min-width: 0;
+}
+
+.condition-copy h3 {
+  margin: 0 0 3px;
+  color: #443780;
+  font-size: clamp(1rem, 3.5vw, 1.35rem);
+  line-height: 1.25;
+  font-weight: 900;
+}
+
+.condition-copy p {
+  margin: 0;
+  color: #7868b2;
+  font-size: clamp(0.7rem, 2.5vw, 0.88rem);
+  line-height: 1.45;
+}
+
+/* Three circular weather details */
+.current-card .weather-details {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.current-card .detail-item {
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  padding: 7px 3px;
+  overflow: hidden;
+
+  border: 2px solid #fffaff;
+  border-radius: 50%;
+
+  background: rgba(255, 249, 255, 0.95);
+  box-shadow: 0 4px 0 rgba(76, 47, 133, 0.13);
+  text-align: center;
+}
+
+.current-card .detail-icon {
+  font-size: clamp(1.15rem, 4vw, 1.8rem);
+  line-height: 1.2;
+}
+
+.current-card .detail-item p {
+  margin: 0;
+  color: #7868b2;
+  font-size: clamp(0.56rem, 2vw, 0.78rem);
+  line-height: 1.25;
+}
+
+.current-card .detail-item strong {
+  color: #453786;
+  font-size: clamp(0.76rem, 2.8vw, 1.15rem);
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+/* Weather-specific frame colors */
+.weather-theme-sunny { --card-accent: #f5c866; }
+.weather-theme-cloudy { --card-accent: #c8b5f0; }
+.weather-theme-rainy { --card-accent: #8db6ef; }
+.weather-theme-stormy { --card-accent: #8d76bd; }
+.weather-theme-snowy { --card-accent: #acd6f5; }
+.weather-theme-windy { --card-accent: #a5d8b2; }
+.weather-theme-night,
+.weather-theme-nightly { --card-accent: #a99bde; }
+.weather-theme-partlyCloudy { --card-accent: #efa8ca; }
+.weather-theme-foggy { --card-accent: #aab5ca; }
+.weather-theme-hazy { --card-accent: #f2b18a; }
+
+/* Keep the existing search and forecast layout responsive */
+@media (max-width: 650px) {
+  .current-card {
+    width: min(100%, 390px);
+    padding: 9px;
+    border-width: 4px;
+    border-radius: 25px;
+  }
+
+  .art-header {
+    min-height: 65px;
+    padding-inline: 7px;
+  }
+
+  .art-spacer {
+    min-height: 100px;
+  }
+
+  .condition-panel {
+    min-height: 76px;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 22px;
+  }
+
+  .condition-icon {
+    flex-basis: 44px;
+    width: 44px;
+    height: 44px;
+    font-size: 34px;
+  }
+
+  .current-card .weather-details {
+    gap: 5px;
+  }
+
+  .current-card .detail-item {
+    padding: 5px 2px;
+    gap: 3px;
+  }
+}
+
+@media (max-width: 340px) {
+  .current-card .detail-item p {
+    font-size: 0.5rem;
+  }
+
+  .current-card .detail-item strong {
+    font-size: 0.68rem;
+  }
+}

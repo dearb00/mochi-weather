@@ -20,69 +20,112 @@
 
   <main class="app-shell">
     <header class="site-header">
-      <a class="brand" href="#"><span class="brand-icon">☁</span><span>Mochi Weather</span></a>
+      <a class="brand" href="#">
+        <span class="brand-icon">☁</span>
+        <span>Mochi Weather</span>
+      </a>
       <span class="header-note">a little weather diary ✿</span>
     </header>
 
     <section class="intro">
       <p class="eyebrow">YOUR COZY LITTLE WEATHER WORLD</p>
       <h1>How's the sky <span>today?</span></h1>
-      <p class="intro-text">A little sunshine, a little magic, and a forecast just for you.</p>
+      <p class="intro-text">
+        A little sunshine, a little magic, and a forecast just for you.
+      </p>
     </section>
 
     <form id="searchForm" class="search-bar">
       <span aria-hidden="true">⌕</span>
       <label class="sr-only" for="cityInput">Enter a city</label>
-      <input id="cityInput" type="text" placeholder="Enter a city... e.g. Gujrat" value="Gujrat" autocomplete="off" required>
+      <input
+        id="cityInput"
+        type="text"
+        placeholder="Enter a city... e.g. Gujrat"
+        value="Gujrat"
+        autocomplete="off"
+        required
+      >
       <button id="searchButton" type="submit">Find weather ✿</button>
     </form>
-    <p id="statusMessage" class="status-message" role="status" aria-live="polite">Preparing your little weather world...</p>
 
-    <section class="current-card weather-theme-night" id="currentCard" aria-label="Current weather">
-      <div class="art-panel" id="artPanel" aria-hidden="true"></div>
+    <p id="statusMessage" class="status-message" role="status"
+       aria-live="polite">
+      Preparing your little weather world...
+    </p>
+
+    <section class="current-card weather-theme-night" id="currentCard">
 
       <div class="card-topline">
         <div class="location-block">
-          <h2><span class="location-pin">♥</span><span id="cityName">Gujrat</span></h2>
+          <h2>
+            <span class="location-pin">♥</span>
+            <span id="cityName">Gujrat</span>
+          </h2>
           <p id="currentDate" class="date-label">Loading date...</p>
         </div>
-        <span class="weather-sticker" id="currentSticker" aria-hidden="true">🌙</span>
+
+        <div class="top-weather">
+          <span class="temperature-bubble" id="currentTemp">--°C</span>
+          <span class="weather-sticker" id="currentSticker"
+                aria-hidden="true">🌙</span>
+        </div>
       </div>
 
+      <!-- The artwork is a separate background layer. -->
       <div class="art-spacer" aria-hidden="true"></div>
 
+      <!-- Separate creamy lavender condition bar -->
       <div class="condition-bar">
-        <span class="condition-icon" id="conditionIcon" aria-hidden="true">🌙</span>
+        <span class="condition-icon" id="conditionIcon"
+              aria-hidden="true">🌙</span>
+
         <div class="condition-copy">
           <h3 id="currentCondition">Waiting for the sky...</h3>
-          <p id="dayMessage">Your sky has a little story to tell.</p>
-          <span id="currentTemp" class="sr-only">--°C</span>
+          <p id="dayMessage">
+            Your sky has a little story to tell.
+          </p>
         </div>
       </div>
 
+      <!-- These circles sit on the separate lavender glitter panel. -->
       <div class="weather-details">
         <div class="detail-item">
-          <span class="detail-icon humidity-icon" aria-hidden="true">💧</span>
-          <p>Humidity</p><strong id="humidity">--%</strong>
+          <span class="detail-icon humidity-icon"
+                aria-hidden="true">💧</span>
+          <p>Humidity</p>
+          <strong id="humidity">--%</strong>
         </div>
+
         <div class="detail-item">
-          <span class="detail-icon wind-icon" aria-hidden="true">≋</span>
-          <p>Wind speed</p><strong id="windSpeed">-- km/h</strong>
+          <span class="detail-icon wind-icon"
+                aria-hidden="true">≋</span>
+          <p>Wind speed</p>
+          <strong id="windSpeed">-- km/h</strong>
         </div>
+
         <div class="detail-item">
-          <span class="detail-icon feels-icon" aria-hidden="true">🌡</span>
-          <p>Feels like</p><strong id="detailFeelsLike">--°C</strong>
+          <span class="detail-icon feels-icon"
+                aria-hidden="true">🌡️</span>
+          <p>Feels like</p>
+          <strong id="detailFeelsLike">--°C</strong>
         </div>
       </div>
 
       <div class="card-footer">
-        <span>made with little clouds & lots of love</span><span aria-hidden="true">♡ ✦ ♡</span>
+        <span>made with little clouds & lots of love</span>
+        <span aria-hidden="true">♡ ✦ ♡</span>
       </div>
     </section>
 
     <footer class="site-footer">
       <p>☁️ Mochi Weather · a tiny corner of calm 🌷</p>
-      <p>Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> · Made with HTML, CSS & JavaScript</p>
+      <p>
+        Weather data by
+        <a href="https://open-meteo.com/"
+           target="_blank" rel="noopener noreferrer">Open-Meteo</a>
+        · Made with HTML, CSS & JavaScript
+      </p>
     </footer>
   </main>
 </body>

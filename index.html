@@ -4,29 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <meta name="theme-color" content="#55418b">
-  <meta name="description" content="A cozy little pixel weather world with real weather forecasts.">
-
+  <meta name="description" content="Mochi Weather — a cozy pixel-art weather world.">
   <title>Mochi Weather ☁️</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-
 <body>
   <div class="sky-decor" aria-hidden="true">
-    <div class="pixel-sun"></div>
-    <div class="cloud cloud-one"></div>
-    <div class="cloud cloud-two"></div>
+    <div class="stars"></div>
     <div class="mountain mountain-back"></div>
     <div class="mountain mountain-front"></div>
     <div class="lake"></div>
-    <div class="fireflies"></div>
   </div>
 
   <main class="app-shell">
     <header class="site-header">
-      <a class="brand" href="#" aria-label="Mochi Weather home">
+      <a class="brand" href="#">
         <span class="brand-icon">☁</span>
         <span>Mochi Weather</span>
       </a>
@@ -59,56 +53,55 @@
       Preparing your little weather world...
     </p>
 
-    
-<section class="current-card weather-theme-nightly" id="currentCard">
+    <!-- MAIN PIXEL ART WEATHER CARD -->
+    <section class="current-card weather-theme-night" id="currentCard">
+      <div class="card-topline">
+        <div class="location-block">
+          <h2><span class="location-pin">♥</span> <span id="cityName">Gujrat</span></h2>
+          <p id="currentDate" class="date-label">Loading date...</p>
+        </div>
+        <span class="weather-sticker" id="currentSticker" aria-hidden="true">🌙</span>
+      </div>
 
-  <div class="art-header">
-    <div class="location-info">
-      <h2 id="cityName">Your City</h2>
-      <p id="currentDate" class="date-label">Loading date...</p>
-    </div>
-    <span class="weather-sticker" id="currentSticker" aria-hidden="true">🌙</span>
-  </div>
+      <!-- This image is decorative; weather text remains real HTML. -->
+      <div class="art-spacer" aria-hidden="true"></div>
 
-  <!-- Weather artwork comes from the selected image file -->
-  <div class="art-spacer" aria-hidden="true"></div>
+      <div class="condition-bar">
+        <span class="condition-icon" id="conditionIcon" aria-hidden="true">🌙</span>
+        <div class="condition-copy">
+          <h3 id="currentCondition">Waiting for the sky...</h3>
+          <p id="dayMessage">Your sky has a little story to tell.</p>
+          <span id="currentTemp" class="sr-only">--</span>
+        </div>
+      </div>
 
-  <!-- Accessible weather information -->
-  <div class="condition-panel">
-    <span class="condition-icon" id="conditionIcon" aria-hidden="true">🌙</span>
-    <div class="condition-copy">
-      <h3 id="currentCondition">Clear night</h3>
-      <p id="dayMessage">A peaceful little night under the stars.</p>
-    </div>
-  </div>
+      <div class="weather-details">
+        <div class="detail-item">
+          <span class="detail-icon humidity-icon" aria-hidden="true">💧</span>
+          <p>Humidity</p>
+          <strong id="humidity">--%</strong>
+        </div>
+        <div class="detail-item">
+          <span class="detail-icon wind-icon" aria-hidden="true">≋</span>
+          <p>Wind speed</p>
+          <strong id="windSpeed">-- km/h</strong>
+        </div>
+        <div class="detail-item">
+          <span class="detail-icon feels-icon" aria-hidden="true">🌡</span>
+          <p>Feels like</p>
+          <strong id="detailFeelsLike">--°C</strong>
+        </div>
+      </div>
 
-  <!-- Keep existing weather data IDs for JavaScript -->
-  <span id="currentTemp" class="sr-only">--</span>
-  <span id="feelsLike" class="sr-only">Feels like --°C</span>
+      <p id="feelsLike" class="sr-only">Feels like --°C</p>
 
-  <div class="weather-details">
-    <div class="detail-item">
-      <span class="detail-icon" aria-hidden="true">💧</span>
-      <p>Humidity</p>
-      <strong id="humidity">--%</strong>
-    </div>
+      <div class="card-footer">
+        <span>made with little clouds & lots of love</span>
+        <span aria-hidden="true">♡ ✦ ♡</span>
+      </div>
+    </section>
 
-    <div class="detail-item">
-      <span class="detail-icon" aria-hidden="true">🍃</span>
-      <p>Wind speed</p>
-      <strong id="windSpeed">-- km/h</strong>
-    </div>
-
-    <div class="detail-item">
-      <span class="detail-icon" aria-hidden="true">🌡️</span>
-      <p>Feels like</p>
-      <strong id="detailFeelsLike">--°C</strong>
-    </div>
-  </div>
-
-</section>
-
-
+    <!-- MORNING AND EVENING FORECASTS -->
     <section class="forecast-section">
       <div class="section-heading">
         <div>
@@ -135,8 +128,7 @@
               <p class="forecast-temp" id="morningTemp">--°C</p>
               <p class="forecast-condition" id="morningCondition">Loading...</p>
             </div>
-            <span class="forecast-character" id="morningCharacter"
-              aria-hidden="true">🌤️</span>
+            <span class="forecast-character" id="morningCharacter" aria-hidden="true">🌤️</span>
           </div>
 
           <div class="forecast-footer" id="morningMessage">
@@ -160,8 +152,7 @@
               <p class="forecast-temp" id="eveningTemp">--°C</p>
               <p class="forecast-condition" id="eveningCondition">Loading...</p>
             </div>
-            <span class="forecast-character" id="eveningCharacter"
-              aria-hidden="true">🌙</span>
+            <span class="forecast-character" id="eveningCharacter" aria-hidden="true">🌙</span>
           </div>
 
           <div class="forecast-footer" id="eveningMessage">
@@ -175,9 +166,7 @@
       <p>☁️ Mochi Weather · a tiny corner of calm 🌷</p>
       <p>
         Weather data by
-        <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">
-          Open-Meteo
-        </a>
+        <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a>
         · Made with HTML, CSS & JavaScript
       </p>
     </footer>

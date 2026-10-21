@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap');
 
 :root {
@@ -10,9 +9,7 @@
   --white: #fffafc;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html {
   min-height: 100%;
@@ -38,7 +35,6 @@ body {
 }
 
 /* Dreamy pixel-inspired page background */
-
 .sky-decor {
   position: fixed;
   inset: 0;
@@ -106,7 +102,6 @@ body {
 }
 
 /* Page layout */
-
 .app-shell {
   width: min(100% - 32px, 1000px);
   margin: 0 auto;
@@ -173,9 +168,7 @@ body {
   letter-spacing: -1.3px;
 }
 
-.intro h1 span {
-  color: #ffe4a1;
-}
+.intro h1 span { color: #ffe4a1; }
 
 .intro-text {
   max-width: 430px;
@@ -186,7 +179,6 @@ body {
 }
 
 /* City search */
-
 .search-bar {
   display: flex;
   align-items: center;
@@ -218,9 +210,7 @@ body {
   font: inherit;
 }
 
-.search-bar input::placeholder {
-  color: #a399b3;
-}
+.search-bar input::placeholder { color: #a399b3; }
 
 .search-bar button {
   min-height: 43px;
@@ -272,7 +262,6 @@ body {
 }
 
 /* MAIN WEATHER CARD */
-
 .current-card {
   --card-accent: #a99bff;
   --card-bg: #ad8cf6;
@@ -280,19 +269,15 @@ body {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-
   display: flex;
   flex-direction: column;
 
   width: min(100%, 430px);
   margin: 0 auto;
-  padding: 17px 13px 13px;
+  padding: 17px 13px 15px;
 
   border: 4px solid #f5e8ff;
   border-radius: 26px;
-
-  /* This is the SEPARATE lower lavender background.
-     The weather artwork is only in ::before. */
   background-color: var(--card-bg);
   background-image:
     radial-gradient(circle, #ffe5ff 0 1.5px, transparent 2.5px),
@@ -307,9 +292,7 @@ body {
     0 20px 35px #241b4230;
 }
 
-
-/* Full weather illustration: TOP SECTION ONLY */
-
+/* Artwork area: fill the width, with no small inset image */
 .current-card::before {
   content: "";
   position: absolute;
@@ -317,10 +300,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-
-  /* Control the visible artwork area */
-  height: 82%;
-
+  height: 70%;
   background-image:
     linear-gradient(
       180deg,
@@ -330,14 +310,13 @@ body {
     ),
     var(--weather-art, linear-gradient(160deg, #24245e, #b69bff));
 
-  /* Preserve the artwork's natural proportions */
-  background-size: 100% 70%;
-background-position: center, center top;
-background-repeat: no-repeat;
-
+  /* First value sizes the overlay; second sizes the actual art.
+     The art fills the area so it doesn't look like a small inset panel. */
+  background-size: 100% 100%, 100% 100%;
+  background-position: center, center top;
+  background-repeat: no-repeat;
   pointer-events: none;
 }
-
 
 .current-card > * {
   position: relative;
@@ -345,60 +324,49 @@ background-repeat: no-repeat;
 }
 
 /* Weather-specific accent colours */
-
 .weather-theme-sunny {
   --card-accent: #f5c866;
   --card-bg: #d7b0ff;
 }
-
 .weather-theme-cloudy {
   --card-accent: #c8b5f0;
   --card-bg: #c5a0fa;
 }
-
 .weather-theme-rainy {
   --card-accent: #8db6ef;
   --card-bg: #b7c9f8;
 }
-
 .weather-theme-stormy {
   --card-accent: #a99bde;
   --card-bg: #b6a0ef;
 }
-
 .weather-theme-snowy {
   --card-accent: #acd6f5;
   --card-bg: #c5e5fa;
 }
-
 .weather-theme-windy {
   --card-accent: #a5d8b2;
   --card-bg: #b5e5d1;
 }
-
 .weather-theme-night,
 .weather-theme-nightly {
   --card-accent: #a99bde;
   --card-bg: #ad8cf6;
 }
-
 .weather-theme-partlyCloudy {
   --card-accent: #efa8ca;
   --card-bg: #e9a9e8;
 }
-
 .weather-theme-foggy {
   --card-accent: #aab5ca;
   --card-bg: #c5c7e9;
 }
-
 .weather-theme-hazy {
   --card-accent: #f2b18a;
   --card-bg: #efc1d8;
 }
 
 /* Location, date and temperature bubble */
-
 .card-topline {
   align-items: flex-start;
   gap: 8px;
@@ -407,9 +375,7 @@ background-repeat: no-repeat;
   text-shadow: 0 2px 5px #21194d90;
 }
 
-.location-block {
-  min-width: 0;
-}
+.location-block { min-width: 0; }
 
 .location-block h2 {
   display: flex;
@@ -445,14 +411,14 @@ background-repeat: no-repeat;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 65px;
-  min-height: 30px;
-  padding: 4px 9px;
+  min-width: 68px;
+  min-height: 32px;
+  padding: 5px 10px;
   border: 2px solid #fff;
   border-radius: 999px;
   background: #fff1ff;
   color: #51408b;
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   font-weight: 900;
   text-shadow: none;
   box-shadow: 0 3px 0 #37245b30;
@@ -464,26 +430,23 @@ background-repeat: no-repeat;
   animation: sticker-float 3s ease-in-out infinite;
 }
 
-/* Space for the full illustration */
-
+/* Space reserved for the illustration, so the condition bar sits lower */
 .art-spacer {
   flex: none;
-  height: clamp(175px, 49vw, 245px);
+  height: clamp(240px, 58vw, 285px);
   min-height: 0;
 }
 
-/* Separate creamy lavender condition bar */
-
+/* Condition bar */
 .condition-bar {
   display: flex;
   align-items: center;
   gap: 12px;
-  min-height: 88px;
-  padding: 11px 15px;
-
+  min-height: 92px;
+  padding: 12px 15px;
   border: 2px solid #fff;
-  border-radius: 25px;
-  background: rgba(255, 247, 255, 0.96);
+  border-radius: 24px;
+  background: rgba(255, 247, 255, 0.97);
   box-shadow: 0 5px 0 #8e69cf30;
 }
 
@@ -496,9 +459,7 @@ background-repeat: no-repeat;
   font-size: 40px;
 }
 
-.condition-copy {
-  min-width: 0;
-}
+.condition-copy { min-width: 0; }
 
 .condition-copy h3 {
   margin: 0;
@@ -515,14 +476,13 @@ background-repeat: no-repeat;
   line-height: 1.45;
 }
 
-/* Three TRUE CIRCLES */
-
+/* Three larger, balanced weather circles */
 .weather-details {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: start;
-  gap: 9px;
-  margin-top: 12px;
+  gap: 8px;
+  margin-top: 14px;
 }
 
 .detail-item {
@@ -533,35 +493,29 @@ background-repeat: no-repeat;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  padding: 7px 3px;
-
+  gap: 5px;
+  padding: 5px 3px;
   border: 2px solid #fff;
   border-radius: 50%;
-  background: rgba(255, 248, 255, 0.94);
+  background: rgba(255, 248, 255, 0.96);
   box-shadow: 0 4px 0 #8e69cf30;
-
   color: #493879;
   text-align: center;
 }
 
 .detail-icon {
-  font-size: 24px;
+  font-size: 25px;
   line-height: 1.1;
 }
 
-.humidity-icon {
-  color: #409cff;
-}
+.humidity-icon { color: #409cff; }
 
 .wind-icon {
   color: #4ebd9d;
   font-size: 30px;
 }
 
-.feels-icon {
-  color: #f16bb0;
-}
+.feels-icon { color: #f16bb0; }
 
 .detail-item p {
   margin: 0;
@@ -572,22 +526,24 @@ background-repeat: no-repeat;
 .detail-item strong {
   max-width: 100%;
   overflow-wrap: anywhere;
-  font-size: clamp(0.76rem, 3vw, 1.05rem);
+  font-size: clamp(0.8rem, 3vw, 1.08rem);
   font-weight: 900;
 }
 
-/* Tiny footer and glitter */
-
+/* Hide the little card-footer tagline */
 .card-footer {
   gap: 8px;
-  margin-top: 12px;
+  margin-top: 10px;
   color: #fffaff;
   text-shadow: 0 1px 3px #30204b80;
   font-size: 0.62rem;
 }
 
-/* No morning/evening summary cards */
+.card-footer > span:first-child {
+  display: none;
+}
 
+/* No morning/evening summary cards */
 .forecast-section,
 .forecast-grid,
 .forecast-card {
@@ -595,7 +551,6 @@ background-repeat: no-repeat;
 }
 
 /* Page footer */
-
 .site-footer {
   padding: 22px 0 8px;
   color: #fff0fb;
@@ -604,9 +559,7 @@ background-repeat: no-repeat;
   line-height: 1.9;
 }
 
-.site-footer p {
-  margin: 4px 0;
-}
+.site-footer p { margin: 4px 0; }
 
 .site-footer a {
   color: #fff0b8;
@@ -614,36 +567,26 @@ background-repeat: no-repeat;
 }
 
 /* Animations */
-
 @keyframes twinkle {
   from { opacity: 0.45; }
   to { opacity: 1; }
 }
 
 @keyframes sticker-float {
-  0%, 100% {
-    transform: rotate(-5deg) translateY(0);
-  }
-  50% {
-    transform: rotate(5deg) translateY(-4px);
-  }
+  0%, 100% { transform: rotate(-5deg) translateY(0); }
+  50% { transform: rotate(5deg) translateY(-4px); }
 }
 
 /* Responsive layout */
-
 @media (max-width: 650px) {
   .app-shell {
     width: min(100% - 22px, 430px);
     padding-top: 17px;
   }
 
-  .site-header {
-    margin-bottom: 25px;
-  }
+  .site-header { margin-bottom: 25px; }
 
-  .brand {
-    font-size: 0.98rem;
-  }
+  .brand { font-size: 0.98rem; }
 
   .header-note {
     font-size: 0.68rem;
@@ -661,19 +604,19 @@ background-repeat: no-repeat;
   }
 
   .current-card {
-    padding: 14px 10px 11px;
+    padding: 14px 10px 13px;
     border-width: 4px;
     border-radius: 23px;
   }
 
   .art-spacer {
-    height: clamp(175px, 55vw, 225px);
+    height: clamp(235px, 64vw, 275px);
   }
 
   .condition-bar {
-    min-height: 80px;
+    min-height: 86px;
     gap: 8px;
-    padding: 9px 10px;
+    padding: 10px 11px;
     border-radius: 21px;
   }
 
@@ -683,35 +626,27 @@ background-repeat: no-repeat;
     font-size: 35px;
   }
 
-  .condition-copy p {
-    font-size: 0.7rem;
-  }
+  .condition-copy p { font-size: 0.7rem; }
 
   .weather-details {
     gap: 6px;
+    margin-top: 12px;
   }
 
-  .detail-icon {
-    font-size: 22px;
+  .detail-icon { font-size: 22px; }
+  .wind-icon { font-size: 27px; }
+
+  .detail-item strong {
+    font-size: clamp(0.76rem, 3.2vw, 1rem);
   }
 
-  .wind-icon {
-    font-size: 28px;
-  }
-
-  .card-footer {
-    font-size: 0.55rem;
-  }
+  .card-footer { font-size: 0.55rem; }
 }
 
 @media (max-width: 370px) {
-  .header-note {
-    display: none;
-  }
+  .header-note { display: none; }
 
-  .intro h1 {
-    font-size: 1.9rem;
-  }
+  .intro h1 { font-size: 1.9rem; }
 
   .search-bar button {
     padding: 8px;
@@ -728,9 +663,8 @@ background-repeat: no-repeat;
     font-size: 30px;
   }
 
-  .detail-item p {
-    font-size: 0.55rem;
-  }
+  .detail-item p { font-size: 0.55rem; }
+  .detail-item strong { font-size: 0.76rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

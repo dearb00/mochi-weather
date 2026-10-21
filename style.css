@@ -318,7 +318,7 @@ body {
   right: 0;
 
   /* Keep the image behind the condition bar */
-  height: 63%;
+  height: 69%;
 
   background-image:
     linear-gradient(
@@ -331,6 +331,7 @@ body {
 
   /* Show the whole illustration instead of cropping its edges */
 background-size: 100% 100%, 95% 100%;
+
 background-position: center, center center;
 background-repeat: no-repeat;
   pointer-events: none;

@@ -307,6 +307,7 @@ body {
     0 20px 35px #241b4230;
 }
 
+
 /* Full weather illustration: TOP SECTION ONLY */
 
 .current-card::before {
@@ -317,8 +318,8 @@ body {
   left: 0;
   right: 0;
 
-  /* Keep the image behind the condition bar */
-  height: 60%;
+  /* Control the visible artwork area */
+  height: 62%;
 
   background-image:
     linear-gradient(
@@ -329,13 +330,14 @@ body {
     ),
     var(--weather-art, linear-gradient(160deg, #24245e, #b69bff));
 
-  /* Show the whole illustration instead of cropping its edges */
-background-size: 100% 100%, 95% 100%;
+  /* Preserve the artwork's natural proportions */
+  background-size: 100% 100%, cover;
+  background-position: center, center top;
+  background-repeat: no-repeat;
 
-background-position: center, center center;
-background-repeat: no-repeat;
   pointer-events: none;
 }
+
 
 .current-card > * {
   position: relative;

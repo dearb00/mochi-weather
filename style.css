@@ -331,7 +331,7 @@ body {
     var(--weather-art, linear-gradient(160deg, #24245e, #b69bff));
 
   /* Preserve the artwork's natural proportions */
-  background-size: 90% 90%;
+  background-size: 90% 80%;
 background-position: center, center top;
 background-repeat: no-repeat;
 

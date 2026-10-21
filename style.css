@@ -614,8 +614,8 @@ body {
   }
 
   .condition-bar {
-    min-height: 6px;
-    gap: 6px;
+    min-height: 86px;
+    gap: 1px;
     padding: 10px 11px;
     border-radius: 21px;
   }

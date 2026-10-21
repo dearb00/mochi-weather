@@ -658,10 +658,7 @@ body {
     padding-left: 8px;
   }
 
-  .condition-icon {
-    width: 40px;
-    font-size: 30px;
-  }
+  
 
   .detail-item p { font-size: 0.55rem; }
   .detail-item strong { font-size: 0.76rem; }

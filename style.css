@@ -620,11 +620,7 @@ body {
     border-radius: 21px;
   }
 
-  .condition-icon {
-    width: 46px;
-    height: 48px;
-    font-size: 35px;
-  }
+ 
 
   .condition-copy p { font-size: 0.7rem; }
 

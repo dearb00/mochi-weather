@@ -318,7 +318,7 @@ body {
   right: 0;
 
   /* Keep the image behind the condition bar */
-  height: 69%;
+  height: 63%;
 
   background-image:
     linear-gradient(

@@ -330,7 +330,7 @@ body {
     var(--weather-art, linear-gradient(160deg, #24245e, #b69bff));
 
   /* Show the whole illustration instead of cropping its edges */
-background-size: 100% 100%, 90% 100%;
+background-size: 100% 100%, 95% 100%;
 background-position: center, center center;
 background-repeat: no-repeat;
   pointer-events: none;
